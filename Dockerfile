@@ -1,20 +1,14 @@
-# Use Node.js 20 base image
-FROM node:20
-
-# Set working directory
-WORKDIR /app
-
-# Copy package.json and package-lock.json
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the project files
-COPY . .
-
-# Expose app port (optional; adjust as needed)
-EXPOSE 3000
-
-# Start the app (adjust the command as per your app)
+FROM node:lts-buster
+USER root
+RUN apt-get update && \
+    apt-get install -y ffmpeg webp git && \
+    apt-get upgrade -y && \
+    rm -rf /var/lib/apt/lists/*
+USER node
+RUN git clone https://github.com/JawadTechX/DJ /home/node/DJ
+WORKDIR /home/node/DJ
+RUN chmod -R 777 /home/node/DJ/
+RUN yarn install --network-concurrency 1
+EXPOSE 7860
+ENV NODE_ENV=production
 CMD ["npm", "start"]
