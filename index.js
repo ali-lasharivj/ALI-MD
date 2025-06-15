@@ -1,3 +1,5 @@
+const axios = require('axios')
+const config = require('./config')
 const {
   default: makeWASocket,
     useMultiFileAuthState,
@@ -20,7 +22,6 @@ const {
     fetchLatestBaileysVersion,
     Browsers
   } = require(config.BAILEYS)
-  
   
   const l = console.log
   const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson } = require('./lib/functions')
